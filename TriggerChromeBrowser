@@ -8,8 +8,6 @@ public class Test1 {
         WebDriver driver = new ChromeDriver();
         
         driver.get("https://www.google.com");
-       driver.get("https://www.github.com/Karthick2174/Java_Program");
-        driver.manage().timeouts().implicitlyWait(8500, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.manage().window().minimize();
         driver.manage().window().maximize();
