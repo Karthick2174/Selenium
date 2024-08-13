@@ -11,5 +11,6 @@ public class Selftest2{
       WebElement p=driver.findElement(By.name("q"));
       p.sendKeys("Selenium Java");
       p.submit();
+      driver.navigate().to("https://www.w3schools.com/");
    }
 }
