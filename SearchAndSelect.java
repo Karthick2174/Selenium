@@ -15,6 +15,7 @@ public class Selftest {
             searchBox.submit();
             TimeUnit.SECONDS.sleep(5);
             List<WebElement> results = driver.findElements(By.cssSelector("h3"));
+            System.out.println(driver.getTitle());
             if (results.size() > 2) {
                 results.get(2).click();
                 TimeUnit.SECONDS.sleep(10);
