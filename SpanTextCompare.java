@@ -8,8 +8,8 @@ public class One {
         WebDriver driver = new ChromeDriver();
         driver.get("Https://google.com");
 		WebElement p = driver.findElement(By.name("q"));
-		p.sendKeys("Selenium Key").submit();
-		//p;
+		p.sendKeys("Selenium Key");
+		p.submit();
         WebElement spanElement = driver.findElement(By.className("VuuXrf"));
         String actualSpanText = spanElement.getText();
         String expectedSpanText = "Selenium";
