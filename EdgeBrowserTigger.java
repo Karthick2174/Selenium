@@ -2,7 +2,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class Test1 {
+public class EdgeBrowserTigger {
     @SuppressWarnings("deprecation")
 	public static void main(String[] args) throws InterruptedException {
        WebDriver driver1 = new EdgeDriver();
