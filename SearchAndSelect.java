@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Selftest {
+public class SearchAndSelect {
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();       
             driver.get("https://www.google.com");
