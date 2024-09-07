@@ -3,10 +3,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class ClearInput {
+public class One {
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.get("Https://google.com");
+        driver.manage().window().maximize();
 		WebElement p = driver.findElement(By.name("q"));
 		p.sendKeys("Selenium Key");
 		Thread.sleep(2000);
@@ -15,8 +16,8 @@ public class ClearInput {
 		p.sendKeys("Selenium Key");
 		p.submit();
         WebElement spanElement = driver.findElement(By.className("VuuXrf"));
-        spanElement.click();
         String actualSpanText = spanElement.getText();
+        spanElement.click();
         String expectedSpanText = "Selenium";
         if (actualSpanText.equals(expectedSpanText)) {
             System.out.println("Text matches: " + actualSpanText);
