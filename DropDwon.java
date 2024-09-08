@@ -14,13 +14,13 @@ public static void main (String [] args) throws InterruptedException {
 	Select select = new Select(DropDown2);
 	Thread.sleep(2000);
 	select.selectByIndex(1);
-	System.out.println(select.getFirstSelectedOption().getText());
+	System.out.println("Print Currency Value : "+select.getFirstSelectedOption().getText());
 	Thread.sleep(2000);
 	select.selectByValue("USD");
-	System.out.println(select.getFirstSelectedOption().getText());
+	System.out.println("Print Currency Value : "+select.getFirstSelectedOption().getText());
 	Thread.sleep(2000);
 	select.selectByVisibleText("AED");
-	System.out.println(select.getFirstSelectedOption().getText());
+	System.out.println("Print Currency Value : "+select.getFirstSelectedOption().getText());
 	Driver.quit();
 	}
 }
