@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 public class selectDatePicker {
     public static void main(String[] args) throws InterruptedException {
         WebDriver Drive = new ChromeDriver();
+        //Method 1
         try {
             Drive.get("https://jqueryui.com/datepicker/");
             Thread.sleep(2000); // Wait for page load
