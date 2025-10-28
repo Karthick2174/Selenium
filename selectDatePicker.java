@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class Test5 {
     public static void main(String[] args) throws InterruptedException {
         WebDriver Drive = new ChromeDriver();
-        try {
+  /*      try {
             Drive.get("https://jqueryui.com/datepicker/");
             Thread.sleep(2000); // Wait for page load
             Drive.manage().window().maximize();
@@ -21,9 +21,9 @@ public class Test5 {
             if (Drive != null) {
                 Drive.quit(); 
             }
-        }
-        // Method 2
-        String year = "2025";
+        }*/
+      //Method 2
+        String year = "2026";
         String month = "May";
         String day = "20";
         Drive = new ChromeDriver();
@@ -32,8 +32,18 @@ public class Test5 {
         Drive.manage().window().maximize();
         Thread.sleep(5000);
         Drive.switchTo().frame(0);
-        Drive.findElement(By.xpath("//span[@class='ui-datepicker-month']"));
+        Drive.findElement(By.xpath("//input[@id='datepicker']")).click();
         Thread.sleep(5000);
+        while(true) {
+        	String currentMonth = Drive.findElement(By.xpath("//span[@class='ui-datepicker-month']")).getText();
+        	String currentYear = Drive.findElement(By.xpath("//span[@class='ui-datepicker-year']")).getText();
+        	if(currentMonth.equals(month) && currentYear.equals(year)){
+        		System.out.print("currentMonth : " + currentMonth);
+        		System.out.print(" currentYear : " + currentYear);
+        		break;
+        	}
+        	Drive.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click();
+        }
         Drive.close();
        
     }
