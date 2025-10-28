@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class Test5 {
     public static void main(String[] args) throws InterruptedException {
         WebDriver Drive = new ChromeDriver();
-  /*      try {
+        try {
             Drive.get("https://jqueryui.com/datepicker/");
             Thread.sleep(2000); // Wait for page load
             Drive.manage().window().maximize();
@@ -21,7 +21,7 @@ public class Test5 {
             if (Drive != null) {
                 Drive.quit(); 
             }
-        }*/
+        }
       //Method 2
         String year = "2026";
         String month = "May";
