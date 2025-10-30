@@ -1,11 +1,15 @@
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.List;
+
+
 import org.openqa.selenium.By;
 
 public class Test5 {
     public static void main(String[] args) throws InterruptedException {
         WebDriver Drive = new ChromeDriver();
-        try {
+      try {
             Drive.get("https://jqueryui.com/datepicker/");
             Thread.sleep(2000); // Wait for page load
             Drive.manage().window().maximize();
@@ -43,7 +47,16 @@ public class Test5 {
         		break;
         	}
         	Drive.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click();
+        	Thread.sleep(5000);
         }
+        
+        List<WebElement> alldates = Drive.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        for(WebElement dt : alldates) {
+        	if(dt.getText().equals(day)) {
+        		dt.click();
+        	}
+        }
+        System.out.println();
         Drive.close();
        
     }
