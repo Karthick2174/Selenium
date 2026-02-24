@@ -19,10 +19,11 @@ public class ragulSheety {
     public static String nEMailLocator = "(//input[@type='text'])[2]";
     public static String nPhoneNumberLocator = "(//input[@type='text'])[3]";
     public static String newPasswordLocator = "//p[@class='infoMsg']";
-    public static String resetButton = ".reset-pwd-btn";
-    public static String goToLogInButton = ".go-to-login-btn";
+    public static String resetButton = "//button[normalize-space()='Reset Login']";
+    public static String goToLogInButton = "//button[normalize-space()='Go to Login']";
     public static String logInSuccessLocator = "//p[text()='You are successfully logged in.']";
     public static String passWord = "A";
+    public static String loggedInUserNameLocator = "//*[@id=\"root\"]/div/div/div/h2";
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
@@ -30,14 +31,17 @@ public class ragulSheety {
         driver.get(URL);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        System.out.println("Setup Successfully Completed.");
     }
     public void accWeb() {
         System.out.println("Page title: " + driver.getTitle());
+        System.out.println("Successfully get the title.");
     }
     public void inctpass() {
         driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(nPassword);
         driver.findElement(By.cssSelector(logInButton)).click();
+        System.out.println("Successfully validate the negative case");
     }
     public void getError() {
         driver.navigate().refresh();
@@ -45,28 +49,42 @@ public class ragulSheety {
         inctpass();
         WebElement errorOne = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error")));
         System.out.println("Error Message: " + errorOne.getText());
+        System.out.println("Successfully get the error message.");
     }
     public String passExtract(String passWord) {
     	driver.findElement(By.linkText("Forgot your password?")).click();
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     	driver.findElement(By.xpath(nNameLocator)).sendKeys(name);
     	driver.findElement(By.xpath(nEMailLocator)).sendKeys(email);
     	driver.findElement(By.xpath(nPhoneNumberLocator)).sendKeys(nPassword);
-    	driver.findElement(By.cssSelector(resetButton)).click();
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	WebElement resetBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Reset Login']")));
+    	resetBtn.click();
     	String passWordText = driver.findElement(By.xpath(newPasswordLocator)).getText();
     	System.out.println(passWordText);
     	int start = passWordText.indexOf('\'') + 1;
         int end = passWordText.indexOf('\'', start);
         passWord = passWordText.substring(start, end);
         System.out.println("PassWord: "+ passWord);
+        System.out.println("Successfully get the password");
     	return passWord;
     }
     public void logIn() {
-    	driver.findElement(By.cssSelector(goToLogInButton)).click();
+    	driver.findElement(By.xpath(goToLogInButton)).click();
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     	driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(passWord);
         driver.findElement(By.cssSelector(logInButton)).click();
         String logInSuccessMessage = driver.findElement(By.xpath(logInSuccessLocator)).getText();
         System.out.println("Suucess Messsage:" + logInSuccessMessage);
+        System.out.println("Successfully login");
+    }
+    public void userName() {
+    	String loggedInUserName = driver.findElement(By.xpath(loggedInUserNameLocator)).getText();
+    	 String[] tempName = loggedInUserName.split(" ");
+    	 String Name = tempName[1];
+    	System.out.println("Logged In User Name: "+ Name);
+    	System.out.println("Successfully get logged in user name.");
     }
     public static void main(String[] args) {
         ragulSheety obj = new ragulSheety();
@@ -77,6 +95,7 @@ public class ragulSheety {
             obj.getError();
             passWord = obj.passExtract(passWord);
             obj.logIn();
+            obj.userName();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
