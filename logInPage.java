@@ -12,7 +12,7 @@ public class ragulSheety {
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
     public static String uName = "//input[@placeholder='Username']";
     public static String uPassWord = "//input[@placeholder='Password']";
-    public static String logInButton = "(//button[@class='submit signInBtn'])[1]";
+    public static String signInButton = "(//button[@class='submit signInBtn'])[1]";
     public static String name = "Karthick";
     public static String email = "abc@123.com";
     public static String nPassword = "9876543210";
@@ -41,7 +41,7 @@ public class ragulSheety {
     public void inctpass() {
         driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(nPassword);
-        driver.findElement(By.xpath(logInButton)).click();
+        driver.findElement(By.xpath(signInButton)).click();
         System.out.println("Successfully validate the negative case");
     }
     public void getError() {
@@ -71,23 +71,25 @@ public class ragulSheety {
         Thread.sleep(2000);
     	return passWord;
     }
-    public void logIn() {
+    public void logIn() throws InterruptedException {
     	WebElement backToLogIn = driver.findElement(By.xpath(goToLogInButton));
     	backToLogIn.click();
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	Thread.sleep(2000);
     	driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(passWord);
-        driver.findElement(By.xpath(logInButton)).click();
+        driver.findElement(By.xpath(signInButton)).click();
         String logInSuccessMessage = driver.findElement(By.xpath(logInSuccessLocator)).getText();
         System.out.println("Suucess Messsage:" + logInSuccessMessage);
         Assert.assertEquals(logInSuccessMessage, "You are successfully logged in.");
     }
     public void userName() {
     	String loggedInUserName = driver.findElement(By.cssSelector(loggedInUserNameLocator)).getText();
-    	 String[] tempName = loggedInUserName.split(" ");
-    	 String Name = tempName[1];
-    	System.out.println("Logged In User Name: "+ Name);
-    	System.out.println("Successfully get logged in user name." + name);
+    	String[] tempName = loggedInUserName.split(" ");
+    	String getName = tempName[1];
+    	getName = getName.replace(",", "");
+    	System.out.println("Logged In User Name: "+ getName);
+    	System.out.println("Successfully get logged in user name. " + name);
+    	Assert.assertEquals("Hello " +name+ ",", "Hello " +getName+ ",");
     }
     public static void main(String[] args) {
         ragulSheety obj = new ragulSheety();
