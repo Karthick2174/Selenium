@@ -1,5 +1,7 @@
 import org.testng.Assert;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,10 +9,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 public class ragulSheety {
     WebDriver driver;
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
-    public static String URLOne = "https://demoapps.qspiders.com/ui/radio?sublist=0";
+    public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
     public static String URLTwo = "https://automationtesting.in/";
     public static String uName = "//input[@placeholder='Username']";
     public static String uPassWord = "//input[@placeholder='Password']";
@@ -27,6 +30,9 @@ public class ragulSheety {
     public static String logInSuccessLocator = "//p[text()='You are successfully logged in.']";
     public static String passWord = "A";
     public static String loggedInUserNameLocator = "div[class='login-container'] h2";
+    public static String value;
+    public static String valueOne;
+    public static WebElement dropDownLocator;
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
@@ -96,6 +102,21 @@ public class ragulSheety {
     public void move() {
     	driver.get(URL);
     }
+    public void staticDropDown() {
+    	driver.get(URLOne);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	dropDownLocator = driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")); 
+    	Select dropDownOne = new Select(dropDownLocator);
+    	dropDownOne.selectByIndex(3);
+    	value = dropDownOne.getFirstSelectedOption().getText();
+    	System.out.println("Drop Down Value: " + value);
+    	dropDownOne.selectByVisibleText("AED");
+    	value= dropDownOne.getFirstSelectedOption().getText();
+    	System.out.println("Drop Down Value: " + value);
+    	dropDownOne.selectByVisibleText("INR");
+    	value= dropDownOne.getFirstSelectedOption().getText();
+    	System.out.println("Drop Down Value: " + value);
+    }
     public static void main(String[] args) {
         ragulSheety obj = new ragulSheety();
         try {
@@ -107,6 +128,7 @@ public class ragulSheety {
             obj.logIn();
             obj.userName();
             obj.move();
+            obj.staticDropDown();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
