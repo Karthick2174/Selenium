@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ragulSheety {
     WebDriver driver;
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
+    public static String URLOne = "https://demoapps.qspiders.com/ui/radio?sublist=0";
+    public static String URLTwo = "https://automationtesting.in/";
     public static String uName = "//input[@placeholder='Username']";
     public static String uPassWord = "//input[@placeholder='Password']";
     public static String signInButton = "(//button[@class='submit signInBtn'])[1]";
@@ -91,6 +93,9 @@ public class ragulSheety {
     	System.out.println("Successfully get logged in user name. " + name);
     	Assert.assertEquals("Hello " +name+ ",", "Hello " +getName+ ",");
     }
+    public void move() {
+    	driver.get(URL);
+    }
     public static void main(String[] args) {
         ragulSheety obj = new ragulSheety();
         try {
@@ -101,6 +106,7 @@ public class ragulSheety {
             passWord = obj.passExtract(passWord);
             obj.logIn();
             obj.userName();
+            obj.move();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
