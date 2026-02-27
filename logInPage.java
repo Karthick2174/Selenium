@@ -1,6 +1,7 @@
 import org.testng.Assert;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,10 @@ public class ragulSheety {
     public static String value;
     public static String valueOne;
     public static WebElement dropDownLocator;
+    public static WebElement adultLocator;
+    public static WebElement incrementCountLocalator;
+    public static WebElement incrementCountValueText;
+    public static int i,clickCount = 0;
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
@@ -116,6 +121,18 @@ public class ragulSheety {
     	value= dropDownOne.getFirstSelectedOption().getText();
     	System.out.println("Drop Down Value: " + value);
     }
+    public void addAdultCountOne() throws InterruptedException {
+    	 adultLocator = driver.findElement(By.id("divpaxinfo"));
+    	 adultLocator.click() ;
+    	 while(i<5) {
+    		 incrementCountLocalator  = driver.findElement(By.id("hrefIncAdt"));
+    		 incrementCountLocalator.click(); 
+    		 i++;
+    		 clickCount++;
+    	 }
+    	 System.out.println("Number of Time Clicked: " + clickCount);
+    	 Thread.sleep(2000);
+    }
     public static void main(String[] args) {
         ragulSheety obj = new ragulSheety();
         try {
@@ -128,6 +145,7 @@ public class ragulSheety {
             obj.userName();
             obj.move();
             obj.staticDropDown();
+            obj.addAdultCountOne();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
