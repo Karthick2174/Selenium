@@ -37,18 +37,19 @@ public class ragulSheety {
     public static WebElement incrementCountLocalator;
     public static WebElement incrementCountValueText;
     public static int i,clickCount = 0;
+    public static String titleOne;
+    public static String titleTwo;
+    public static String titleThree;
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
     	driver = new ChromeDriver(options);
         driver.get(URL);
+        titleOne = driver.getTitle();
+        System.out.println("Title of the page: " + titleOne);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         System.out.println("Setup Successfully Completed.");
-    }
-    public void accWeb() {
-        System.out.println("Page title: " + driver.getTitle());
-        System.out.println("Successfully get the title.");
     }
     public void inctpass() {
         driver.findElement(By.xpath(uName)).sendKeys(name);
@@ -105,6 +106,13 @@ public class ragulSheety {
     }
     public void move() {
     	driver.get(URL);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	System.out.println("Title of the page: " + titleOne);
+    	driver.navigate().to(URLOne);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	driver.get(URLOne);
+        titleTwo = driver.getTitle();
+        System.out.println("Title of the page: " + titleTwo);
     }
     public void staticDropDown() {
     	driver.get(URLOne);
@@ -122,6 +130,8 @@ public class ragulSheety {
     	System.out.println("Drop Down Value: " + value);
     }
     public void addAdultCountOne() throws InterruptedException {
+    	driver.navigate().refresh();
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     	 adultLocator = driver.findElement(By.id("divpaxinfo"));
     	 adultLocator.click() ;
     	 while(i<5) {
@@ -137,7 +147,6 @@ public class ragulSheety {
         ragulSheety obj = new ragulSheety();
         try {
             obj.setup();
-            obj.accWeb();
             obj.inctpass();
             obj.getError();
             passWord = obj.passExtract(passWord);
