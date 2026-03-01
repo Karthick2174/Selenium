@@ -170,7 +170,7 @@ public class automateWebPage {
     	Thread.sleep(second);
     }
     public static void main(String[] args) {
-        ragulSheety obj = new ragulSheety();
+    	automateWebPage obj = new automateWebPage();
         try {
             obj.setup();
             obj.inctpass();
@@ -179,9 +179,9 @@ public class automateWebPage {
             obj.logIn();
             obj.userName();
             obj.move();
-            obj.staticDropDown();
-            obj.addAdultCountOne();
             obj.dropDown();
+            obj.addAdultCountOne();
+            obj.staticDropDown();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
