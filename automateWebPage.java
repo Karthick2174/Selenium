@@ -49,8 +49,16 @@ public class automateWebPage {
     public static String arrivalCityName = "(//a[@text='Bengaluru (BLR)'])[2]";
     public static String fromCityName;
     public static String toCityName;
+    public static String doneButtonLocator = "(//input[@type='button'])[1]";
+    public static WebElement doneButton;
     public static WebElement departureCityElement;
     public static WebElement arrivalCityElement;
+    public static String oneWaytripRadioButtonLocator = "//input[@value='OneWay']";
+    public static String twoWaytripRadioButtonLocator = "//input[@value='RoundTrip']";
+    public static String roundtripRadioButtonLocator = "//input[@value='TripPlanner']";
+    public static WebElement oneWayTripRadioButton;
+    public static WebElement twoWayTripRadioButton;
+    public static WebElement roundtripRadioButton;
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
@@ -92,7 +100,7 @@ public class automateWebPage {
         passWord = passWordText.substring(start, end);
         System.out.println("PassWord: "+ passWord);
         System.out.println("Successfully get the password");
-        Thread.sleep(2000);
+        Thread.sleep(millisecond);
     	return passWord;
     }
     public void logIn() throws InterruptedException {
@@ -152,8 +160,9 @@ public class automateWebPage {
     		 ++i;
     		 ++clickCount;
     	 }
+    	 driver.findElement(By.xpath(doneButtonLocator)).click();
     	 System.out.println("Number of Time Clicked: " + clickCount);
-    	 Thread.sleep(1000);
+    	 Thread.sleep(millisecond);
     }
     public void dropDown() throws InterruptedException {
     	driver.get(URLOne);
@@ -169,19 +178,41 @@ public class automateWebPage {
     	System.out.println("Selected Depature and Arrival City Name: " + fromCityName + " , "+ toCityName);
     	Thread.sleep(second);
     }
+    public void typeOfTrip(int i) {
+    	if(i==0) {
+    		oneWayTripRadioButton = driver.findElement(By.xpath(oneWaytripRadioButtonLocator));
+    		oneWayTripRadioButton.click();
+    		System.out.println("One Way Trip");
+    	}
+    	else if (i==1) {
+    		twoWayTripRadioButton = driver.findElement(By.xpath(twoWaytripRadioButtonLocator));
+    		twoWayTripRadioButton.click();
+    		System.out.println("Two Way Trip");
+    	}
+    	else if (i==2){
+    		roundtripRadioButton = driver.findElement(By.xpath(roundtripRadioButtonLocator));
+    		roundtripRadioButton.click();
+    		System.out.println("Round Trip");
+    	}
+    	else{
+    		System.out.print("incorrect selection");
+    	}
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
-            obj.setup();
-            obj.inctpass();
-            obj.getError();
-            passWord = obj.passExtract(passWord);
-            obj.logIn();
-            obj.userName();
-            obj.move();
-            obj.dropDown();
+            obj.setup();       
+            obj.inctpass();        
+            obj.getError();        
+            passWord = obj.passExtract(passWord);         
+            obj.logIn();           
+            obj.userName();          
+            obj.move(); 
+            obj.typeOfTrip(i);
+            obj.dropDown();           
             obj.addAdultCountOne();
             obj.staticDropDown();
+            Thread.sleep(millisecond);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
