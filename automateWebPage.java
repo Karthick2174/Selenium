@@ -1,17 +1,18 @@
 import org.testng.Assert;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 public class ragulSheety {
     WebDriver driver;
+    public static int millisecond = 5000;
+    public static int second = 10;
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
     public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
     public static String URLTwo = "https://automationtesting.in/";
@@ -40,6 +41,16 @@ public class ragulSheety {
     public static String titleOne;
     public static String titleTwo;
     public static String titleThree;
+    public static String fromName = "Che";
+    public static WebElement fromDropDown;
+    public static String depatureCityName = "//a[@value='MAA']";
+    public static String toName = "Be";
+    public static WebElement toDropDown;
+    public static String arrivalCityName = "(//a[@text='Bengaluru (BLR)'])[2]";
+    public static String fromCityName;
+    public static String toCityName;
+    public static WebElement departureCityElement;
+    public static WebElement arrivalCityElement;
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
@@ -48,7 +59,7 @@ public class ragulSheety {
         titleOne = driver.getTitle();
         System.out.println("Title of the page: " + titleOne);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
         System.out.println("Setup Successfully Completed.");
     }
     public void inctpass() {
@@ -59,7 +70,7 @@ public class ragulSheety {
     }
     public void getError() {
         driver.navigate().refresh();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second));
         inctpass();
         WebElement errorOne = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error")));
         System.out.println("Error Message: " + errorOne.getText());
@@ -67,11 +78,11 @@ public class ragulSheety {
     }
     public String passExtract(String passWord) throws InterruptedException {
     	driver.findElement(By.linkText("Forgot your password?")).click();
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	driver.findElement(By.xpath(nNameLocator)).sendKeys(name);
     	driver.findElement(By.xpath(nEMailLocator)).sendKeys(email);
     	driver.findElement(By.xpath(nPhoneNumberLocator)).sendKeys(nPassword);
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second));
     	WebElement resetBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(resetButton)));
     	resetBtn.click();
     	String passWordText = driver.findElement(By.xpath(newPasswordLocator)).getText();
@@ -87,7 +98,7 @@ public class ragulSheety {
     public void logIn() throws InterruptedException {
     	WebElement backToLogIn = driver.findElement(By.xpath(goToLogInButton));
     	backToLogIn.click();
-    	Thread.sleep(2000);
+    	Thread.sleep(millisecond);
     	driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(passWord);
         driver.findElement(By.xpath(signInButton)).click();
@@ -106,17 +117,17 @@ public class ragulSheety {
     }
     public void move() {
     	driver.get(URL);
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	System.out.println("Title of the page: " + titleOne);
     	driver.navigate().to(URLOne);
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	driver.get(URLOne);
         titleTwo = driver.getTitle();
         System.out.println("Title of the page: " + titleTwo);
     }
     public void staticDropDown() {
     	driver.get(URLOne);
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	dropDownLocator = driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")); 
     	Select dropDownOne = new Select(dropDownLocator);
     	dropDownOne.selectByIndex(3);
@@ -131,17 +142,32 @@ public class ragulSheety {
     }
     public void addAdultCountOne() throws InterruptedException {
     	driver.navigate().refresh();
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	 adultLocator = driver.findElement(By.id("divpaxinfo"));
     	 adultLocator.click() ;
-    	 while(i<5) {
+    	 clickCount = 1;
+    	 while(i<4) {
     		 incrementCountLocalator  = driver.findElement(By.id("hrefIncAdt"));
     		 incrementCountLocalator.click(); 
-    		 i++;
-    		 clickCount++;
+    		 ++i;
+    		 ++clickCount;
     	 }
     	 System.out.println("Number of Time Clicked: " + clickCount);
-    	 Thread.sleep(2000);
+    	 Thread.sleep(1000);
+    }
+    public void dropDown() throws InterruptedException {
+    	driver.get(URLOne);
+    	fromDropDown = driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"));
+    	fromDropDown.click();
+    	departureCityElement = driver.findElement(By.xpath(depatureCityName));
+    	departureCityElement.click();
+    	fromCityName = departureCityElement.getText();
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	arrivalCityElement = driver.findElement(By.xpath(arrivalCityName));
+    	arrivalCityElement.click();
+    	toCityName = arrivalCityElement.getText();
+    	System.out.println("Selected Depature and Arrival City Name: " + fromCityName + " , "+ toCityName);
+    	Thread.sleep(second);
     }
     public static void main(String[] args) {
         ragulSheety obj = new ragulSheety();
@@ -155,6 +181,7 @@ public class ragulSheety {
             obj.move();
             obj.staticDropDown();
             obj.addAdultCountOne();
+            obj.dropDown();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
