@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-public class ragulSheety {
+public class automateWebPage {
     WebDriver driver;
     public static int millisecond = 5000;
     public static int second = 10;
