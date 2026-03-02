@@ -1,11 +1,12 @@
 import org.testng.Assert;
+import java.util.List;
+import org.openqa.selenium.WebElement;
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -16,6 +17,7 @@ public class automateWebPage {
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
     public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
     public static String URLTwo = "https://automationtesting.in/";
+    public static String URLThree = "https://rahulshettyacademy.com/AutomationPractice/";
     public static String uName = "//input[@placeholder='Username']";
     public static String uPassWord = "//input[@placeholder='Password']";
     public static String signInButton = "(//button[@class='submit signInBtn'])[1]";
@@ -59,6 +61,11 @@ public class automateWebPage {
     public static WebElement oneWayTripRadioButton;
     public static WebElement twoWayTripRadioButton;
     public static WebElement roundtripRadioButton;
+    public static String countryNameSortForm = "Ind";
+    public static String countryName = "india";
+    public static String countryNameLocator = "//input[@id='autosuggest']";
+    public static WebElement countryDropDown;
+    public static String countryDropDownName;
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
@@ -166,6 +173,7 @@ public class automateWebPage {
     }
     public void dropDown() throws InterruptedException {
     	driver.get(URLOne);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	fromDropDown = driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"));
     	fromDropDown.click();
     	departureCityElement = driver.findElement(By.xpath(depatureCityName));
@@ -179,6 +187,8 @@ public class automateWebPage {
     	Thread.sleep(second);
     }
     public void typeOfTrip(int i) {
+    	driver.get(URLOne);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	if(i==0) {
     		oneWayTripRadioButton = driver.findElement(By.xpath(oneWaytripRadioButtonLocator));
     		oneWayTripRadioButton.click();
@@ -198,6 +208,18 @@ public class automateWebPage {
     		System.out.print("incorrect selection");
     	}
     }
+    public void autoSuggestion(){
+    	driver.get(URLOne);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	countryDropDown = driver.findElement(By.xpath(countryNameLocator));
+    	countryDropDown.sendKeys(countryNameSortForm);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	WebElement countryCode = driver.findElement(By.xpath("//ul[contains(@class,'ui-autocomplete')]//a[text()='India']"));
+    	countryCode.click();
+    }
+    public void checkBoxSelection() {
+    	
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
@@ -212,6 +234,7 @@ public class automateWebPage {
             obj.dropDown();           
             obj.addAdultCountOne();
             obj.staticDropDown();
+            obj.autoSuggestion();
             Thread.sleep(millisecond);
         } catch (Exception e) {
             e.printStackTrace();
