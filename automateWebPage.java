@@ -184,7 +184,6 @@ public class automateWebPage {
     	arrivalCityElement.click();
     	toCityName = arrivalCityElement.getText();
     	System.out.println("Selected Depature and Arrival City Name: " + fromCityName + " , "+ toCityName);
-    	Thread.sleep(second);
     }
     public void typeOfTrip(int i) {
     	driver.get(URLOne);
@@ -218,7 +217,18 @@ public class automateWebPage {
     	countryCode.click();
     }
     public void checkBoxSelection() {
-    	
+    	driver.get(URLThree);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
+    	int count = checkboxes.size();
+    	System.out.println("Total checkboxes: " + count);
+    }
+    public void datPicker() {
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	WebElement yearLocator = driver.findElement(By.cssSelector(".ui-datepicker-year"));
+    	yearLocator.click();
+    	String year = yearLocator.getText();
+    	System.out.println("Year: " + year);
     }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
@@ -231,10 +241,12 @@ public class automateWebPage {
             obj.userName();          
             obj.move(); 
             obj.typeOfTrip(i);
-            obj.dropDown();           
+            obj.dropDown();  
+            obj.datPicker();
             obj.addAdultCountOne();
             obj.staticDropDown();
             obj.autoSuggestion();
+            obj.checkBoxSelection();
             Thread.sleep(millisecond);
         } catch (Exception e) {
             e.printStackTrace();
