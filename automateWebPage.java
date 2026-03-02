@@ -2,6 +2,8 @@ import org.testng.Assert;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import java.time.Duration;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -230,6 +232,26 @@ public class automateWebPage {
     	String year = yearLocator.getText();
     	System.out.println("Year: " + year);
     }
+    public void alertAction() {
+        driver.findElement(By.xpath("//input[@id='name']")).sendKeys(name);
+        driver.findElement(By.xpath("//input[@id='alertbtn']")).click();
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        System.out.println("Alert Message: " + alertText);
+        alert.accept();
+        driver.findElement(By.xpath("//input[@id='name']")).sendKeys(name);
+        driver.findElement(By.xpath("//*[@id=\"confirmbtn\"]")).click();
+        alert = driver.switchTo().alert();
+        alertText = alert.getText();
+        System.out.println("Alert Message: " + alertText);
+        driver.switchTo().alert().dismiss();
+        driver.findElement(By.xpath("//input[@id='name']")).sendKeys(name);
+        driver.findElement(By.xpath("//*[@id=\"confirmbtn\"]")).click();
+        alert = driver.switchTo().alert();
+        alertText = alert.getText();
+        System.out.println("Alert Message: " + alertText);
+        driver.switchTo().alert().accept();
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
@@ -247,6 +269,7 @@ public class automateWebPage {
             obj.staticDropDown();
             obj.autoSuggestion();
             obj.checkBoxSelection();
+            obj.alertAction();
             Thread.sleep(millisecond);
         } catch (Exception e) {
             e.printStackTrace();
