@@ -5,9 +5,12 @@ import org.openqa.selenium.WindowType;
 import java.time.Duration;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -19,6 +22,7 @@ public class automateWebPage {
     public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
     public static String URLTwo = "https://automationtesting.in/";
     public static String URLThree = "https://rahulshettyacademy.com/AutomationPractice/";
+    public static String URLFour = "https://amazon.com/";
     public static String uName = "//input[@placeholder='Username']";
     public static String uPassWord = "//input[@placeholder='Password']";
     public static String signInButton = "(//button[@class='submit signInBtn'])[1]";
@@ -257,10 +261,18 @@ public class automateWebPage {
     	titleTwo = driver.getTitle();
     	System.out.println("New Title Name: " + titleTwo);
     }
+    public void actions() throws InterruptedException {
+    	driver.get(URLFour);
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	Actions action = new Actions(driver);
+    	WebElement search = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
+    	action.moveToElement(search).click().keyDown(Keys.SHIFT).sendKeys("hello").build().perform();
+    	driver.manage().deleteAllCookies();
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
-            obj.setup();       
+            obj.setup(); 
             obj.inctpass();        
             obj.getError();        
             passWord = obj.passExtract(passWord);         
@@ -276,6 +288,7 @@ public class automateWebPage {
             obj.checkBoxSelection();
             obj.alertAction();
             obj.tabs();
+            obj.actions();
             Thread.sleep(millisecond);
         } catch (Exception e) {
             e.printStackTrace();
