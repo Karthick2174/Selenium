@@ -1,6 +1,7 @@
 import org.testng.Assert;
 import java.util.List;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import java.time.Duration;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -250,6 +251,12 @@ public class automateWebPage {
         System.out.println("Alert Message: " + alertText);
         driver.switchTo().alert().accept();
     }
+    public void tabs() {
+    	driver.switchTo().newWindow(WindowType.TAB);
+    	driver.get(URL);
+    	titleTwo = driver.getTitle();
+    	System.out.println("New Title Name: " + titleTwo);
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
@@ -268,6 +275,7 @@ public class automateWebPage {
             obj.autoSuggestion();
             obj.checkBoxSelection();
             obj.alertAction();
+            obj.tabs();
             Thread.sleep(millisecond);
         } catch (Exception e) {
             e.printStackTrace();
