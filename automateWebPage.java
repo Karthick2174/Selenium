@@ -262,17 +262,22 @@ public class automateWebPage {
     }
     public void actions() throws InterruptedException {
     	driver.get(URLFour);
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	Thread.sleep(millisecond);
     	Actions action = new Actions(driver);
     	WebElement search = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
     	action.moveToElement(search).click().keyDown(Keys.SHIFT).sendKeys("hello").build().perform();
     	driver.manage().deleteAllCookies();
     }
-    public void dragAndDrop() {
-    	driver.get("https://jqueryui.com/draggable/");
+    public void dragAndDrop(){
+    	driver.get("https://jqueryui.com/droppable/");
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[class='demo-frame']")));
     	driver.findElement(By.id("draggable")).click();
+    	Actions action = new Actions(driver);
+    	WebElement source = driver.findElement(By.id("draggable"));
+    	WebElement target = driver.findElement(By.id("droppable"));
+    	action.dragAndDrop(source, target).build().perform();
+    	System.out.println("Drag and Drop success");
     }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
