@@ -9,7 +9,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -269,6 +268,12 @@ public class automateWebPage {
     	action.moveToElement(search).click().keyDown(Keys.SHIFT).sendKeys("hello").build().perform();
     	driver.manage().deleteAllCookies();
     }
+    public void dragAndDrop() {
+    	driver.get("https://jqueryui.com/draggable/");
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[class='demo-frame']")));
+    	driver.findElement(By.id("draggable")).click();
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
@@ -289,7 +294,7 @@ public class automateWebPage {
             obj.alertAction();
             obj.tabs();
             obj.actions();
-            Thread.sleep(millisecond);
+            obj.dragAndDrop();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
