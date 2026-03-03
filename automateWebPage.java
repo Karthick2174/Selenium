@@ -17,6 +17,7 @@ public class automateWebPage {
     WebDriver driver;
     public static int millisecond = 5000;
     public static int second = 10;
+    public static int i,clickCount = 0;
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
     public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
     public static String URLTwo = "https://automationtesting.in/";
@@ -60,7 +61,6 @@ public class automateWebPage {
     public static WebElement adultLocator;
     public static WebElement incrementCountLocalator;
     public static WebElement incrementCountValueText;
-    public static int i,clickCount = 0;
     public static WebElement fromDropDown;
     public static WebElement toDropDown;
     public static WebElement doneButton;
