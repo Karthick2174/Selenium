@@ -20,15 +20,11 @@ public class automateWebPage {
     public static int i,clickCount = 0;
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
     public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
-    public static String URLTwo = "https://automationtesting.in/";
-    public static String URLThree = "https://rahulshettyacademy.com/AutomationPractice/";
+    public static String URLTwo = "https://rahulshettyacademy.com/AutomationPractice/";
     public static String URLFour = "https://amazon.com/";
     public static String uName = "//input[@placeholder='Username']";
     public static String uPassWord = "//input[@placeholder='Password']";
     public static String signInButton = "(//button[@class='submit signInBtn'])[1]";
-    public static String name = "Karthick";
-    public static String email = "abc@123.com";
-    public static String nPassword = "9876543210";
     public static String nNameLocator = "(//input[@type='text'])[1]";
     public static String nEMailLocator = "(//input[@type='text'])[2]";
     public static String nPhoneNumberLocator = "(//input[@type='text'])[3]";
@@ -36,19 +32,22 @@ public class automateWebPage {
     public static String resetButton = "//button[normalize-space()='Reset Login']";
     public static String goToLogInButton = "(//button[normalize-space()='Go to Login'])[1]";
     public static String logInSuccessLocator = "//p[text()='You are successfully logged in.']";
-    public static String passWord = "A";
     public static String loggedInUserNameLocator = "div[class='login-container'] h2";
-    public static String fromName = "Che";
     public static String depatureCityName = "//a[@value='MAA']";
-    public static String toName = "Be";
     public static String arrivalCityName = "(//a[@text='Bengaluru (BLR)'])[2]";
     public static String doneButtonLocator = "(//input[@type='button'])[1]";
     public static String oneWaytripRadioButtonLocator = "//input[@value='OneWay']";
     public static String twoWaytripRadioButtonLocator = "//input[@value='RoundTrip']";
     public static String roundtripRadioButtonLocator = "//input[@value='TripPlanner']";
+    public static String countryNameLocator = "//input[@id='autosuggest']";
+    public static String name = "Karthick";
+    public static String email = "abc@123.com";
+    public static String nPassword = "9876543210";
     public static String countryNameSortForm = "Ind";
     public static String countryName = "india";
-    public static String countryNameLocator = "//input[@id='autosuggest']";
+    public static String passWord = "A";
+    public static String fromName = "Che";
+    public static String toName = "Be";
     public static String countryDropDownName;
     public static String value;
     public static String valueOne;
@@ -221,7 +220,7 @@ public class automateWebPage {
     	countryCode.click();
     }
     public void checkBoxSelection() {
-    	driver.get(URLThree);
+    	driver.get(URLTwo);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
     	int count = checkboxes.size();
