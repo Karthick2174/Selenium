@@ -21,7 +21,7 @@ public class automateWebPage {
     public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
     public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
     public static String URLTwo = "https://rahulshettyacademy.com/AutomationPractice/";
-    public static String URLFour = "https://amazon.com/";
+    public static String URLThree = "https://amazon.com/";
     public static String uName = "//input[@placeholder='Username']";
     public static String uPassWord = "//input[@placeholder='Password']";
     public static String signInButton = "(//button[@class='submit signInBtn'])[1]";
@@ -260,7 +260,7 @@ public class automateWebPage {
     	System.out.println("New Title Name: " + titleTwo);
     }
     public void actions() throws InterruptedException {
-    	driver.get(URLFour);
+    	driver.get(URLThree);
     	Thread.sleep(millisecond);
     	Actions action = new Actions(driver);
     	WebElement search = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
