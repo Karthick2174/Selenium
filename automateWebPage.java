@@ -280,6 +280,11 @@ public class automateWebPage {
     	driver.switchTo().defaultContent();
     	System.out.println("Drag and Drop success");
     }
+    public void numberOfTags() {
+    	driver.get("https://demoapps.qspiders.com/ui/link?sublist=0");
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(millisecond));
+    	System.out.println("Number of tags: " + driver.findElement(By.id("a")).getSize());
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
@@ -301,6 +306,7 @@ public class automateWebPage {
             obj.tabs();
             obj.actions();
             obj.dragAndDrop();
+            obj.numberOfTags();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
