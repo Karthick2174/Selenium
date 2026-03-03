@@ -39,37 +39,37 @@ public class automateWebPage {
     public static String loggedInUserNameLocator = "div[class='login-container'] h2";
     public static String value;
     public static String valueOne;
+    public static String titleOne;
+    public static String titleTwo;
+    public static String titleThree;
+    public static String fromName = "Che";
+    public static String depatureCityName = "//a[@value='MAA']";
+    public static String toName = "Be";
+    public static String arrivalCityName = "(//a[@text='Bengaluru (BLR)'])[2]";
+    public static String fromCityName;
+    public static String toCityName;
+    public static String doneButtonLocator = "(//input[@type='button'])[1]";
+    public static String oneWaytripRadioButtonLocator = "//input[@value='OneWay']";
+    public static String twoWaytripRadioButtonLocator = "//input[@value='RoundTrip']";
+    public static String roundtripRadioButtonLocator = "//input[@value='TripPlanner']";
+    public static String countryNameSortForm = "Ind";
+    public static String countryName = "india";
+    public static String countryNameLocator = "//input[@id='autosuggest']";
+    public static String countryDropDownName;
     public static WebElement dropDownLocator;
     public static WebElement adultLocator;
     public static WebElement incrementCountLocalator;
     public static WebElement incrementCountValueText;
     public static int i,clickCount = 0;
-    public static String titleOne;
-    public static String titleTwo;
-    public static String titleThree;
-    public static String fromName = "Che";
     public static WebElement fromDropDown;
-    public static String depatureCityName = "//a[@value='MAA']";
-    public static String toName = "Be";
     public static WebElement toDropDown;
-    public static String arrivalCityName = "(//a[@text='Bengaluru (BLR)'])[2]";
-    public static String fromCityName;
-    public static String toCityName;
-    public static String doneButtonLocator = "(//input[@type='button'])[1]";
     public static WebElement doneButton;
     public static WebElement departureCityElement;
     public static WebElement arrivalCityElement;
-    public static String oneWaytripRadioButtonLocator = "//input[@value='OneWay']";
-    public static String twoWaytripRadioButtonLocator = "//input[@value='RoundTrip']";
-    public static String roundtripRadioButtonLocator = "//input[@value='TripPlanner']";
     public static WebElement oneWayTripRadioButton;
     public static WebElement twoWayTripRadioButton;
     public static WebElement roundtripRadioButton;
-    public static String countryNameSortForm = "Ind";
-    public static String countryName = "india";
-    public static String countryNameLocator = "//input[@id='autosuggest']";
     public static WebElement countryDropDown;
-    public static String countryDropDownName;
     public void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
@@ -282,8 +282,8 @@ public class automateWebPage {
     }
     public void numberOfTags() {
     	driver.get("https://demoapps.qspiders.com/ui/link?sublist=0");
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(millisecond));
-    	System.out.println("Number of tags: " + driver.findElement(By.id("a")).getSize());
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	System.out.println("Number of tags: " + driver.findElement(By.tagName("a")).getSize());
     }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
