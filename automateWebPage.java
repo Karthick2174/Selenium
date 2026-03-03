@@ -277,6 +277,7 @@ public class automateWebPage {
     	WebElement source = driver.findElement(By.id("draggable"));
     	WebElement target = driver.findElement(By.id("droppable"));
     	action.dragAndDrop(source, target).build().perform();
+    	driver.switchTo().defaultContent();
     	System.out.println("Drag and Drop success");
     }
     public static void main(String[] args) {
