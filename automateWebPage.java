@@ -2,10 +2,15 @@ import org.testng.Assert;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -284,6 +289,19 @@ public class automateWebPage {
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	System.out.println("Number of tags: " + driver.findElement(By.tagName("a")).getSize());
     }
+    public void multiTabs() {
+    	driver.get("https://www.qafox.com/selenium/selenium-practice/");
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	WebElement tags = driver.findElement(By.xpath("//div[@itemprop='text']"));
+    	System.out.println("Number tags was presence: " + tags.findElements(By.tagName("a")).size());
+    }
+    public void screenShots() throws IOException {
+    	driver.get("https://www.qafox.com/selenium/selenium-practice/");
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	File src=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(src,new File("D:\\2\\screenshot.png"));
+		System.out.println("Screen shot taken.");
+    }
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
@@ -306,6 +324,8 @@ public class automateWebPage {
             obj.actions();
             obj.dragAndDrop();
             obj.numberOfTags();
+            obj.multiTabs();
+            obj.screenShots();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
