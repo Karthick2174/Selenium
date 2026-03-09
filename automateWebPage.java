@@ -53,6 +53,7 @@ public class automateWebPage {
     public static String passWord = "A";
     public static String fromName = "Che";
     public static String toName = "Be";
+    public static String testName =  "A";
     public static String countryDropDownName;
     public static String value;
     public static String valueOne;
@@ -295,13 +296,18 @@ public class automateWebPage {
     	WebElement tags = driver.findElement(By.xpath("//div[@itemprop='text']"));
     	System.out.println("Number tags was presence: " + tags.findElements(By.tagName("a")).size());
     }
-    public void screenShots() throws IOException {
-    	driver.get("https://www.qafox.com/selenium/selenium-practice/");
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
-    	File src=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(src,new File("D:\\2\\screenshot.png"));
-		System.out.println("Screen shot taken.");
-    }
+    	public void screenShots() {
+    	    try {
+    	        driver.get("https://www.qafox.com/selenium/selenium-practice/");
+    	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    	        File dest = new File("D:\\2\\screenshot.png");
+    	        FileUtils.copyFile(src, dest);
+    	        System.out.println("Screen shot taken.");
+    	    } catch (Exception e) {
+    	        e.printStackTrace();   // check console for any IOException or WebDriver errors
+    	    }
+    	}
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
