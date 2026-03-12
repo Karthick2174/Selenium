@@ -3,7 +3,6 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
@@ -18,64 +17,64 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-public class automateWebPage {
+class automateWebPage {
     WebDriver driver;
-    public static int millisecond = 5000;
-    public static int second = 10;
-    public static int i,clickCount = 0;
-    public static String URL = "https://rahulshettyacademy.com/locatorspractice/";
-    public static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
-    public static String URLTwo = "https://rahulshettyacademy.com/AutomationPractice/";
-    public static String URLThree = "https://amazon.com/";
-    public static String uName = "//input[@placeholder='Username']";
-    public static String uPassWord = "//input[@placeholder='Password']";
-    public static String signInButton = "(//button[@class='submit signInBtn'])[1]";
-    public static String nNameLocator = "(//input[@type='text'])[1]";
-    public static String nEMailLocator = "(//input[@type='text'])[2]";
-    public static String nPhoneNumberLocator = "(//input[@type='text'])[3]";
-    public static String newPasswordLocator = "//p[@class='infoMsg']";
-    public static String resetButton = "//button[normalize-space()='Reset Login']";
-    public static String goToLogInButton = "(//button[normalize-space()='Go to Login'])[1]";
-    public static String logInSuccessLocator = "//p[text()='You are successfully logged in.']";
-    public static String loggedInUserNameLocator = "div[class='login-container'] h2";
-    public static String depatureCityName = "//a[@value='MAA']";
-    public static String arrivalCityName = "(//a[@text='Bengaluru (BLR)'])[2]";
-    public static String doneButtonLocator = "(//input[@type='button'])[1]";
-    public static String oneWaytripRadioButtonLocator = "//input[@value='OneWay']";
-    public static String twoWaytripRadioButtonLocator = "//input[@value='RoundTrip']";
-    public static String roundtripRadioButtonLocator = "//input[@value='TripPlanner']";
-    public static String countryNameLocator = "//input[@id='autosuggest']";
-    public static String name = "Karthick";
-    public static String email = "abc@123.com";
-    public static String nPassword = "9876543210";
-    public static String countryNameSortForm = "Ind";
-    public static String countryName = "india";
-    public static String passWord = "A";
-    public static String fromName = "Che";
-    public static String toName = "Be";
-    public static String testName =  "A";
-    public static String countryDropDownName;
-    public static String value;
-    public static String valueOne;
-    public static String titleOne;
-    public static String titleTwo;
-    public static String titleThree;
-    public static String fromCityName;
-    public static String toCityName;
-    public static WebElement dropDownLocator;
-    public static WebElement adultLocator;
-    public static WebElement incrementCountLocalator;
-    public static WebElement incrementCountValueText;
-    public static WebElement fromDropDown;
-    public static WebElement toDropDown;
-    public static WebElement doneButton;
-    public static WebElement departureCityElement;
-    public static WebElement arrivalCityElement;
-    public static WebElement oneWayTripRadioButton;
-    public static WebElement twoWayTripRadioButton;
-    public static WebElement roundtripRadioButton;
-    public static WebElement countryDropDown;
-    public void setup() {
+    static int millisecond = 5000;
+    static int second = 10;
+    static int i,clickCount = 0;
+    static String URL = "https://rahulshettyacademy.com/locatorspractice/";
+    static String URLOne = "https://rahulshettyacademy.com/dropdownsPractise/";
+    static String URLTwo = "https://rahulshettyacademy.com/AutomationPractice/";
+    static String URLThree = "https://amazon.com/";
+    static String uName = "//input[@placeholder='Username']";
+    static String uPassWord = "//input[@placeholder='Password']";
+    static String signInButton = "(//button[@class='submit signInBtn'])[1]";
+    static String nNameLocator = "(//input[@type='text'])[1]";
+    static String nEMailLocator = "(//input[@type='text'])[2]";
+    static String nPhoneNumberLocator = "(//input[@type='text'])[3]";
+    static String newPasswordLocator = "//p[@class='infoMsg']";
+    static String resetButton = "//button[normalize-space()='Reset Login']";
+    static String goToLogInButton = "(//button[normalize-space()='Go to Login'])[1]";
+    static String logInSuccessLocator = "//p[text()='You are successfully logged in.']";
+    static String loggedInUserNameLocator = "div[class='login-container'] h2";
+    static String depatureCityName = "//a[@value='MAA']";
+    static String arrivalCityName = "(//a[@text='Bengaluru (BLR)'])[2]";
+    static String doneButtonLocator = "(//input[@type='button'])[1]";
+    static String oneWaytripRadioButtonLocator = "//input[@value='OneWay']";
+    static String twoWaytripRadioButtonLocator = "//input[@value='RoundTrip']";
+    static String roundtripRadioButtonLocator = "//input[@value='TripPlanner']";
+    static String countryNameLocator = "//input[@id='autosuggest']";
+    static String name = "Karthick";
+    static String email = "abc@123.com";
+    static String nPassword = "9876543210";
+    static String countryNameSortForm = "Ind";
+    static String countryName = "india";
+    static String passWord = "A";
+    static String fromName = "Che";
+    static String toName = "Be";
+    static String testName =  "A";
+    static String countryDropDownName;
+    static String value;
+    static String valueOne;
+    static String titleOne;
+    static String titleTwo;
+    static String titleThree;
+    static String fromCityName;
+    static String toCityName;
+    static WebElement dropDownLocator;
+    static WebElement adultLocator;
+    static WebElement incrementCountLocalator;
+    static WebElement incrementCountValueText;
+    static WebElement fromDropDown;
+    static WebElement toDropDown;
+    static WebElement doneButton;
+    static WebElement departureCityElement;
+    static WebElement arrivalCityElement;
+    static WebElement oneWayTripRadioButton;
+    static WebElement twoWayTripRadioButton;
+    static WebElement roundtripRadioButton;
+    static WebElement countryDropDown;
+    void setup() {
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--no-sandbox");
     	driver = new ChromeDriver(options);
@@ -86,13 +85,13 @@ public class automateWebPage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
         System.out.println("Setup Successfully Completed.");
     }
-    public void inctpass() {
+    void inctpass() {
         driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(nPassword);
         driver.findElement(By.xpath(signInButton)).click();
         System.out.println("Successfully validate the negative case");
     }
-    public void getError() {
+    void getError() {
         driver.navigate().refresh();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second));
         inctpass();
@@ -100,7 +99,7 @@ public class automateWebPage {
         System.out.println("Error Message: " + errorOne.getText());
         System.out.println("Successfully get the error message.");
     }
-    public String passExtract(String passWord) throws InterruptedException {
+    String passExtract(String passWord) throws InterruptedException {
     	driver.findElement(By.linkText("Forgot your password?")).click();
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	driver.findElement(By.xpath(nNameLocator)).sendKeys(name);
@@ -119,7 +118,7 @@ public class automateWebPage {
         Thread.sleep(millisecond);
     	return passWord;
     }
-    public void logIn() throws InterruptedException {
+    void logIn() throws InterruptedException {
     	WebElement backToLogIn = driver.findElement(By.xpath(goToLogInButton));
     	backToLogIn.click();
     	Thread.sleep(millisecond);
@@ -130,7 +129,7 @@ public class automateWebPage {
         System.out.println("Suucess Messsage:" + logInSuccessMessage);
         Assert.assertEquals(logInSuccessMessage, "You are successfully logged in.");
     }
-    public void userName() {
+    void userName() {
     	String loggedInUserName = driver.findElement(By.cssSelector(loggedInUserNameLocator)).getText();
     	String[] tempName = loggedInUserName.split(" ");
     	String getName = tempName[1];
@@ -139,7 +138,7 @@ public class automateWebPage {
     	System.out.println("Successfully get logged in user name. " + name);
     	Assert.assertEquals("Hello " +name+ ",", "Hello " +getName+ ",");
     }
-    public void move() {
+    void move() {
     	driver.get(URL);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	System.out.println("Title of the page: " + titleOne);
@@ -149,7 +148,7 @@ public class automateWebPage {
         titleTwo = driver.getTitle();
         System.out.println("Title of the page: " + titleTwo);
     }
-    public void staticDropDown() {
+    void staticDropDown() {
     	driver.get(URLOne);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	dropDownLocator = driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")); 
@@ -164,7 +163,7 @@ public class automateWebPage {
     	value= dropDownOne.getFirstSelectedOption().getText();
     	System.out.println("Drop Down Value: " + value);
     }
-    public void addAdultCountOne() throws InterruptedException {
+    void addAdultCountOne() throws InterruptedException {
     	driver.navigate().refresh();
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	 adultLocator = driver.findElement(By.id("divpaxinfo"));
@@ -180,7 +179,7 @@ public class automateWebPage {
     	 System.out.println("Number of Time Clicked: " + clickCount);
     	 Thread.sleep(millisecond);
     }
-    public void dropDown() throws InterruptedException {
+    void dropDown() throws InterruptedException {
     	driver.get(URLOne);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	fromDropDown = driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"));
@@ -194,7 +193,7 @@ public class automateWebPage {
     	toCityName = arrivalCityElement.getText();
     	System.out.println("Selected Depature and Arrival City Name: " + fromCityName + " , "+ toCityName);
     }
-    public void typeOfTrip(int i) {
+    void typeOfTrip(int i) {
     	driver.get(URLOne);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	if(i==0) {
@@ -216,7 +215,7 @@ public class automateWebPage {
     		System.out.print("incorrect selection");
     	}
     }
-    public void autoSuggestion(){
+    void autoSuggestion(){
     	driver.get(URLOne);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	countryDropDown = driver.findElement(By.xpath(countryNameLocator));
@@ -225,21 +224,21 @@ public class automateWebPage {
     	WebElement countryCode = driver.findElement(By.xpath("//ul[contains(@class,'ui-autocomplete')]//a[text()='India']"));
     	countryCode.click();
     }
-    public void checkBoxSelection() {
+    void checkBoxSelection() {
     	driver.get(URLTwo);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
     	int count = checkboxes.size();
     	System.out.println("Total checkboxes: " + count);
     }
-    public void datPicker() {
+    void datPicker() {
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	WebElement yearLocator = driver.findElement(By.cssSelector(".ui-datepicker-year"));
     	yearLocator.click();
     	String year = yearLocator.getText();
     	System.out.println("Year: " + year);
     }
-    public void alertAction() {
+    void alertAction() {
         driver.findElement(By.xpath("//input[@id='name']")).sendKeys(name);
         driver.findElement(By.xpath("//input[@id='alertbtn']")).click();
         Alert alert = driver.switchTo().alert();
@@ -259,13 +258,13 @@ public class automateWebPage {
         System.out.println("Alert Message: " + alertText);
         driver.switchTo().alert().accept();
     }
-    public void tabs() {
+    void tabs() {
     	driver.switchTo().newWindow(WindowType.TAB);
     	driver.get(URL);
     	titleTwo = driver.getTitle();
     	System.out.println("New Title Name: " + titleTwo);
     }
-    public void actions() throws InterruptedException {
+    void actions() throws InterruptedException {
     	driver.get(URLThree);
     	Thread.sleep(millisecond);
     	Actions action = new Actions(driver);
@@ -273,7 +272,7 @@ public class automateWebPage {
     	action.moveToElement(search).click().keyDown(Keys.SHIFT).sendKeys("hello").build().perform();
     	driver.manage().deleteAllCookies();
     }
-    public void dragAndDrop(){
+    void dragAndDrop(){
     	driver.get("https://jqueryui.com/droppable/");
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[class='demo-frame']")));
@@ -285,18 +284,18 @@ public class automateWebPage {
     	driver.switchTo().defaultContent();
     	System.out.println("Drag and Drop success");
     }
-    public void numberOfTags() {
+    void numberOfTags() {
     	driver.get("https://demoapps.qspiders.com/ui/link?sublist=0");
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	System.out.println("Number of tags: " + driver.findElement(By.tagName("a")).getSize());
     }
-    public void multiTabs() {
+    void multiTabs() {
     	driver.get("https://www.qafox.com/selenium/selenium-practice/");
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
     	WebElement tags = driver.findElement(By.xpath("//div[@itemprop='text']"));
     	System.out.println("Number tags was presence: " + tags.findElements(By.tagName("a")).size());
     }
-    	public void screenShots() {
+    	void screenShots() {
     	    try {
     	        driver.get("https://www.qafox.com/selenium/selenium-practice/");
     	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
