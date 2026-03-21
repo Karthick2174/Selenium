@@ -85,8 +85,7 @@ class automateWebPage {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
         System.out.println("Setup Successfully Completed.");
-    }
-    
+    } 
     void inctpass() {
         driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(nPassword);
