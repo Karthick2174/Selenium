@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import java.io.File;
 import java.time.Duration;
+import java.time.LocalDateTime;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -85,7 +87,7 @@ class automateWebPage {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
         System.out.println("Setup Successfully Completed.");
-    } 
+    }
     void inctpass() {
         driver.findElement(By.xpath(uName)).sendKeys(name);
         driver.findElement(By.xpath(uPassWord)).sendKeys(nPassword);
@@ -304,6 +306,7 @@ class automateWebPage {
     	        File dest = new File("D:\\2\\screenshot.png");
     	        FileUtils.copyFile(src, dest);
     	        System.out.println("Screen shot taken.");
+    	        System.out.print(LocalDateTime.now());
     	    } catch (Exception e) {
     	        e.printStackTrace();   // check console for any IOException or WebDriver errors
     	    }
