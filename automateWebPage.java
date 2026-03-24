@@ -5,7 +5,6 @@ import org.openqa.selenium.WindowType;
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -184,7 +183,7 @@ class automateWebPage {
     }
     void dropDown() throws InterruptedException {
     	driver.get(URLOne);
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    	driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(second));
     	fromDropDown = driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"));
     	fromDropDown.click();
     	departureCityElement = driver.findElement(By.xpath(depatureCityName));
