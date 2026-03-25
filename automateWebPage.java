@@ -5,6 +5,7 @@ import org.openqa.selenium.WindowType;
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -76,9 +77,9 @@ class automateWebPage {
     static WebElement roundtripRadioButton;
     static WebElement countryDropDown;
     void setup() {
-    	ChromeOptions options = new ChromeOptions();
-    	options.addArguments("--no-sandbox");
-    	options.addArguments("--headless");
+   	ChromeOptions options = new ChromeOptions();
+//    	options.addArguments("--no-sandbox");
+//    	options.addArguments("--headless");
     	driver = new ChromeDriver(options);
         driver.get(URL);
         titleOne = driver.getTitle();
@@ -310,12 +311,20 @@ class automateWebPage {
     	        e.printStackTrace();   // check console for any IOException or WebDriver errors
     	    }
     	}
+    	void toolTip() {
+    		driver.get("https://www.w3schools.com/CSS/css_tooltip.asp");
+    		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(second));
+    		WebElement tooltip = driver.findElement(By.xpath("(//div[@class='tooltip'])[1]"));
+    		String text = tooltip.getAttribute("title");
+    		System.out.println(text);
+    	}
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
             obj.setup(); 
             obj.inctpass();        
-            obj.getError();        
+            obj.getError();  
+            obj.toolTip();
             passWord = obj.passExtract(passWord);         
             obj.logIn();           
             obj.userName();          
