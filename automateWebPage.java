@@ -5,7 +5,6 @@ import org.openqa.selenium.WindowType;
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -78,8 +77,8 @@ class automateWebPage {
     static WebElement countryDropDown;
     void setup() {
    	ChromeOptions options = new ChromeOptions();
-//    	options.addArguments("--no-sandbox");
-//    	options.addArguments("--headless");
+    	options.addArguments("--no-sandbox");
+    	options.addArguments("--headless");
     	driver = new ChromeDriver(options);
         driver.get(URL);
         titleOne = driver.getTitle();
