@@ -5,6 +5,7 @@ import org.openqa.selenium.WindowType;
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -263,7 +264,7 @@ class automateWebPage {
     void tabs() {
     	driver.switchTo().newWindow(WindowType.TAB);
     	driver.get(URL);
-    	titleTwo = driver.getTitle();
+    	titleTwo = driver.getTitle();				
     	System.out.println("New Title Name: " + titleTwo);
     }
     void actions() throws InterruptedException {
@@ -307,7 +308,7 @@ class automateWebPage {
     	        System.out.println("Screen shot taken.");
     	        System.out.print(LocalDateTime.now());
     	    } catch (Exception e) {
-    	        e.printStackTrace();   // check console for any IOException or WebDriver errors
+    	        e.printStackTrace();
     	    }
     	}
     	void toolTip() {
