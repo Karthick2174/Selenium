@@ -5,6 +5,7 @@ import org.openqa.selenium.WindowType;
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -15,6 +16,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -317,6 +321,12 @@ class automateWebPage {
     		String text = tooltip.getAttribute("title");
     		System.out.println(text);
     	}
+    	void logs() {
+    		LogEntries logs = driver.manage().logs().get(LogType.BROWSER);
+    		for (LogEntry entry : logs) {
+    		 System.out.println(entry.getMessage());
+    		}
+    	}
     public static void main(String[] args) {
     	automateWebPage obj = new automateWebPage();
         try {
@@ -342,6 +352,7 @@ class automateWebPage {
             obj.numberOfTags();
             obj.multiTabs();
             obj.screenShots();
+            obj.logs();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
